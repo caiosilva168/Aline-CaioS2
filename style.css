@@ -1,0 +1,303 @@
+:root {
+            /* DEFINIÇÃO DAS VARIÁVEIS DE COR */
+            
+            /* Tons de Azul */
+            --azul-claro: #3a8886;
+            --azul-medio: #3b7c7b;
+            --azul-escuro: #395756;
+            
+            /* Tons de Vermelho */
+            --roxo-suave: #607aa8;
+            --roxo-vibrante: #586f97;
+            --roxo-profundo: #4F5D75;
+            
+            /* Branco/Neutro */
+            --branco-puro: #FDECEF;
+            --branco-gelo: #CECCCC; /* Um branco com leve toque azul */
+    
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            
+            /* CONSTRUÇÃO DO MESH GRADIENT */
+            /* Usamos radial-gradient sobrepostos em posições diferentes */
+            background-color: var(--branco-gelo); /* Cor de fundo base */
+            background-image: 
+                radial-gradient(at 10% 10%, var(--azul-claro) 0, transparent 40%),
+                radial-gradient(at 90% 10%, var(--roxo-suave) 0, transparent 40%),
+                radial-gradient(at 50% 50%, var(--branco-puro) 0, transparent 60%), /* Ponto de branco central */
+                radial-gradient(at 10% 90%, var(--roxo-vibrante) 0, transparent 50%),
+                radial-gradient(at 90% 90%, var(--azul-medio) 0, transparent 50%),
+                radial-gradient(at 30% 60%, var(--azul-escuro) 0, transparent 30%), /* Ponto escuro mais sutil */
+                radial-gradient(at 70% 30%, var(--roxo-profundo) 0, transparent 30%); /* Ponto profundo mais sutil */
+            background-attachment: fixed;
+            background-size: 200% 200%; /* Aumenta o tamanho para animação */
+            animation: meshAnimation 20s ease infinite; /* Adiciona movimento */
+        }
+                /* ANIMAÇÃO DO MESH GRADIENT */
+        @keyframes meshAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+.menu-button {
+  position: relative; 
+  width: 40px;
+  height: 31px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Espaça as linhas igualmente */
+  padding: 0;
+  z-index: 100;
+  margin: 2% 0 0 5%;
+}
+ul{
+  list-style: none;
+}
+.line {
+  width: 100%;
+  height: 4px;
+  background-color: #CECCCC;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out; /* Suaviza movimento, cor e opacidade */
+  transform-origin: center; /* Garante que a rotação seja pelo meio */
+  z-index: 5;
+}
+
+/* --- ESTADO ATIVO (QUANDO VIRA "X") --- */
+
+/* A linha do topo desce e gira 45 graus */
+.menu-button.active .line:nth-child(1) {
+  transform: translateY(13px) rotate(45deg);
+}
+
+/* A linha do meio simplesmente desaparece */
+.menu-button.active .line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px); /* Dá um efeito de "saída" lateral */
+}
+
+/* A linha de baixo sobe e gira -45 graus */
+.menu-button.active .line:nth-child(3) {
+  transform: translateY(-13px) rotate(-45deg);
+}
+
+.nav-menu {
+  position: fixed;
+  top: 0;
+  left: -100%; /* Começa escondido fora da tela */
+  width: 250px;
+  height: 100vh;
+  background: linear-gradient(to right,#2d9d99,#4F5D75,#344055);
+  transition: left 0.4s ease; /* Animação suave de deslize */
+  box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+  padding-top: 80px;
+  z-index: 99;
+  
+}
+
+/* Quando o botão tiver a classe .active, o menu aparece */
+.menu-button.active + .nav-menu {
+  left: 0; /* Desliza para dentro da tela */
+}
+.nav-menu a{
+    text-decoration: none;
+    color: #CECCCC;
+}
+.list {
+    width: 80%;
+    min-height: 400px;
+    margin: 40px auto 0 auto; /* O '40px' empurra toda a galeria para baixo, longe do título */
+    position: relative;
+    overflow: hidden;
+}
+.glr-img img{
+  width: 200px;
+  height: 250px;
+  border-radius: 10px;
+  
+  transform: translateX(400px);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    transition-delay: 0.5s;
+  filter: drop-shadow(0 0 20px rgba(3, 61, 131, 0.9));
+}
+.active1 .glr-img img{
+    transform: translateX(0);
+    opacity: 1;
+}
+.item {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    width: 100%;
+    padding: 1%;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px) brightness(100%);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transform: translateX(100vh);
+    flex-direction: column;
+    transition: transform 0.7s ease-in-out, opacity 0.7s ease-in-out, margin-top 0.7s ease-in-out; /* Adicionamos margin-top na transição */
+}
+.active1 {
+    opacity: 1;
+    transform: translateX(0); /* Mantém o slide vindo da direita perfeitamente */
+    margin-top: 60px; /* ISSO vai empurrar o quadrado de vidro INTEIRO para baixo suavemente */
+}
+.active1 .glr-img img{
+    transform: translateX(0);
+    opacity: 1;
+}
+.arrows{
+    position: absolute;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+
+}
+
+.arrows-btn{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: rgba(13, 105, 124, 0.74);
+    border: 1px solid rgb(6, 72, 88);
+}
+.active1 .btn-alt {
+    transform: translateX(0);
+    opacity: 1;
+}
+.container{
+  margin-top: 5%;
+}
+.fts_p{
+  width: 200px;
+  border-radius: 20px;
+  border: 1px solid #000;
+}
+.top{
+    text-align: center;
+    background-color: #000;
+    width: 100%;
+    height: 30vh;
+    margin: 0;
+    margin-bottom: 2%;
+    color: #fff;
+    border-bottom: 2px solid #fff;
+    padding-top: 2%;
+    z-index: 50;
+}
+header h1{
+  margin: 2% 5%;
+}
+div{
+  text-align: center;
+  width: 80%;
+  
+}
+.declar{
+  width: 80%;
+    padding: 1%;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px) brightness(100%);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    margin: 2% 5%;
+    display: flex;         /* Ativa o modo flexível */
+    align-items: center;   /* Alinha a imagem e o texto verticalmente pelo centro */
+    gap: 10px;            /* Cria um espaço entre a imagem e o texto */
+    padding: 20px;
+    justify-content: center;
+    flex-direction: column;
+}
+.declar p{
+  width: 80%;
+}
+.perfil{
+  font-size: 1rem;
+}
+.perfil img{
+  width: 60%;
+}
+.pagIni{
+  width: 80%;
+    padding: 1%;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px) brightness(100%);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    margin: 2% 5%;
+    display: flex;         /* Ativa o modo flexível */
+    align-items: center;   /* Alinha a imagem e o texto verticalmente pelo centro */
+    gap: 10px;            /* Cria um espaço entre a imagem e o texto */
+    padding: 20px;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.container-links {
+  width: 80%;
+    max-width: 400px;     /* Impede que o campo de vidro fique largo demais */
+    padding: 25px 20px;   /* Espaçamento interno mais equilibrado */
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px) brightness(100%);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    
+    /* --- ALINHAMENTO E POSICIONAMENTO --- */
+    /* O '80px' no topo garante que ele fique bem abaixo do carrossel */
+    /* Os 'auto' nas laterais centralizam o quadrado de vidro na tela */
+    margin: 80px auto 40px auto; 
+    
+    display: flex;         
+    align-items: center;   
+    gap: 15px;            /* Espaçamento uniforme entre um botão e outro */
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+.links {
+  background: linear-gradient(to right, #344055, #238b87, #607aa8);
+  border: solid 1px #8A00C4;
+  color: white;
+  padding: 12px 24px;     /* Dica: em mobile, use px ou rem para padding interno, evita que o botão mude muito de tamanho */
+  border-radius: 999px;
+  text-decoration: none;
+  text-align: center;     /* Garante o texto centralizado */
+  min-width: 200px;       /* Opcional: deixa os dois botões com o mesmo tamanho físico */
+}
+@media screen and (min-width: 768px) {
+.declar{
+  width: 80%;
+    padding: 1%;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px) brightness(100%);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    margin: 2% 10%;
+    display: flex;         /* Ativa o modo flexível */
+    align-items: center;   /* Alinha a imagem e o texto verticalmente pelo centro */
+    gap: 10px;            /* Cria um espaço entre a imagem e o texto */
+    padding: 20px;
+    justify-content: center;
+    flex-direction: row;
+}
+
+}
