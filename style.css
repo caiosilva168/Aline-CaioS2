@@ -113,7 +113,7 @@ ul{
 .list {
     width: 80%;
     min-height: 400px;
-    margin: 40px auto 0 auto; /* O '40px' empurra toda a galeria para baixo, longe do título */
+    margin: 60px auto 0 auto; /* O '40px' empurra toda a galeria para baixo, longe do título */
     position: relative;
     overflow: hidden;
 }
@@ -164,7 +164,7 @@ ul{
     width: 80%;
     display: flex;
     justify-content: space-between;
-    top: 85%;
+    top: 89%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 3;
@@ -178,10 +178,6 @@ ul{
     cursor: pointer;
     background-color: rgba(13, 105, 124, 0.74);
     border: 1px solid rgb(6, 72, 88);
-}
-.active1 .btn-alt {
-    transform: translateX(0);
-    opacity: 1;
 }
 .container{
   margin-top: 5%;

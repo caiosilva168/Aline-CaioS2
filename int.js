@@ -37,6 +37,10 @@ function IdadeAtual() {
 
     return `${anos} ano(s), ${meses} mese(s) e ${dias} dia(s)`;
 }
+const elemento = document.getElementById("exibirTempo");
+if (elemento) {
+    elemento.innerText = "Estamos há " + IdadeAtual() + " juntos";
+}
 function update(direction){
     document.querySelector('.item.active1').classList.remove('active1');
      //Responsável pela animação de ir para o próximo
@@ -75,7 +79,4 @@ nextButton.addEventListener('click', () => {
 
 // Para evitar que o texto acumule toda vez que a função rodar, use "=" em vez de "+=" 
 // ou verifique se o elemento existe primeiro.
-const elemento = document.getElementById("exibirTempo");
-if (elemento) {
-    elemento.innerText = "Estamos há " + IdadeAtual() + " juntos";
-}
+
